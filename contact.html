@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contact | HYTek Pinnacle</title>
+<meta name="description" content="Contact HYTek Pinnacle — email, phone, WhatsApp, and a secure form.">
+<link rel="canonical" href="https://hytekpinnacle.github.io/contact">
+<link rel="icon" href="logo.png">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Contact | HYTek Pinnacle" />
+<meta property="og:description" content="Contact HYTek Pinnacle — email, phone, WhatsApp, and a secure form." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="hytekpinnacle.github.io/contact" />
+<meta property="og:image" content="logo.png" />
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#c21d2e" />
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{
+  --ink:#111827;
+  --bg:#0b1020;
+  --muted:#6b7280;
+  --brand:#c21d2e;
+  --brand-2:#ef4444;
+  --accent:#1f4aa8;
+  --accent-2:#60a5fa;
+  --ring: var(--accent);
+}
+
+html,body {
+  scroll-behavior:smooth;
+  background:#0b1020;
+  color:#e5e7eb;
+  font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+a { color:var(--accent); }
+
+.card {
+  background:rgba(17,24,39,.6);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:1.25rem;
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+.glow-border {
+  position:relative;
+}
+.glow-border::before {
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  padding:1px;
+  background:conic-gradient(from 180deg at 50% 50%, var(--accent), var(--brand), transparent 70%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation:spin 8s linear infinite;
+}
+@keyframes spin {
+  to { transform:rotate(1turn); }
+}
+@media (prefers-reduced-motion:no-preference) {
+  .reveal {
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .reveal.is-inview {
+    opacity:1;
+    transform:none;
+  }
+  .hover-float:hover {
+    transform:translateY(-3px);
+  }
+  .transition-all {
+    transition:all .25s ease;
+  }
+}
+
+.btn {
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  font-weight:700;
+  border-radius:1rem;
+  padding:.85rem 1.2rem;
+}
+
+.btn-primary {
+  background:linear-gradient(90deg, var(--brand), var(--accent));
+  color:white;
+  box-shadow:0 10px 20px rgba(194,29,46,.35);
+}
+
+.btn-primary:hover {
+  filter:brightness(1.08);
+}
+
+.btn-ghost {
+  border:1px solid rgba(255,255,255,.14);
+}
+
+:focus-visible {
+  outline:3px solid var(--ring);
+  outline-offset:3px;
+}
+
+.hero-bg {
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  z-index:-1;
+  background:radial-gradient(1200px 600px at 10% -20%, rgba(31,74,168,.25), transparent),
+             radial-gradient(1000px 400px at 110% 10%, rgba(194,29,46,.25), transparent),
+             linear-gradient(180deg, rgba(255,255,255,.02), transparent 35%);
+}
+
+canvas.particles {
+  position:absolute;
+  inset:0;
+  opacity:.6;
+  mix-blend:screen;
+  pointer-events: none;
+}
+
+.navbar {
+  backdrop-filter: blur(10px);
+  background:rgba(10,14,28,.65);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.nav-link {
+  font-weight:600;
+  color:#cbd5e1;
+}
+
+.nav-link:hover {
+  color:white;
+}
+
+footer {
+  background:rgba(10,14,28,.9);
+  border-top:1px solid rgba(255,255,255,.08);
+}
+
+.badge {
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  padding:.35rem .6rem;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+}
+
+.icon {
+  width:1.25rem;
+  height:1.25rem;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const o = new IntersectionObserver((es)=>{ 
+    es.forEach(e=> e.isIntersecting && e.target.classList.add('is-inview')); 
+  }, {threshold:.14});
+  document.querySelectorAll('.reveal').forEach(el=>o.observe(el));
+
+  const c = document.querySelector('canvas.particles'); 
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  const DPR = window.devicePixelRatio || 1;
+  let w, h, dots;
+
+  function resize(){
+    w = c.clientWidth;
+    h = c.clientHeight;
+    c.width = w * DPR;
+    c.height = h * DPR;
+    ctx.scale(DPR,DPR);
+    dots = Array.from({length: 60},()=>({
+      x: Math.random()*w,
+      y: Math.random()*h,
+      vx:(Math.random()-.5)*.6,
+      vy:(Math.random()-.5)*.6,
+      r: Math.random()*1.8+0.6
+    }));
+  }
+
+  function frame(){
+    ctx.clearRect(0,0,w,h);
+    for(const d of dots){
+      d.x+=d.vx; 
+      d.y+=d.vy;
+      if(d.x<0||d.x>w) d.vx*=-1;
+      if(d.y<0||d.y>h) d.vy*=-1;
+      ctx.beginPath(); 
+      ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
+      ctx.fillStyle = Math.random()>.5? 'rgba(31,74,168,.6)' : 'rgba(194,29,46,.6)';
+      ctx.fill();
+    }
+    for(let i=0;i<dots.length;i++) 
+      for(let j=i+1;j<dots.length;j++){ 
+        const a=dots[i], b=dots[j]; 
+        const dx=a.x-b.x, dy=a.y-b.y;
+        const dist=Math.hypot(dx,dy);
+        if(dist<120){ 
+          ctx.strokeStyle='rgba(96,165,250,.15)';
+          ctx.lineWidth=1;
+          ctx.beginPath();
+          ctx.moveTo(a.x,a.y);
+          ctx.lineTo(b.x,b.y);
+          ctx.stroke(); 
+        }
+      }
+    requestAnimationFrame(frame);
+  }
+
+  resize(); 
+  frame(); 
+  window.addEventListener('resize', resize);
+});
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "HYTek Pinnacle",
+  "url": "https://hytekpinnacle.github.io",
+  "logo": "logo.png",
+  "sameAs": [],
+  "contactPoint": [{
+    "@type": "ContactPoint",
+    "email": "hytekpinnacle@gmail.com",
+    "telephone": "+919361807592",
+    "contactType": "sales",
+    "areaServed": "IN"
+  }]
+}
+</script>
+</head>
+
+<body>
+<canvas class="particles"></canvas>
+
+<header class="navbar sticky top-0 z-40">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex items-center justify-between h-16">
+      <a href="index.html" class="flex items-center gap-3">
+        <picture>
+          <source srcset="logo.webp" type="image/webp">
+          <img src="logo.png" alt="HYTek Pinnacle logo" class="h-9 w-9 rounded-md object-contain"/>
+        </picture>
+        <span class="font-extrabold tracking-tight text-white">HYTek Pinnacle</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <button id="menuBtn" class="md:hidden p-2 rounded-lg border border-white/10 text-slate-200" aria-label="Toggle Menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="md:hidden hidden border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-3 text-sm">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="services.html" class="nav-link">Services</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+  </div>
+  <script>
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('mobileMenu');
+    if (btn) btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+  </script>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 py-16">
+  <header class="max-w-3xl reveal">
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-white">Contact Us</h1>
+    <p class="mt-3 text-slate-300">Share your requirements in detail and we'll respond promptly.</p>
+  </header>
+
+  <section class="mt-8 grid gap-8 lg:grid-cols-2">
+    <div class="card p-6">
+      <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="space-y-4" aria-label="Project inquiry form">
+        <input type="hidden" name="access_key" value="78bdaf20-bfb1-4afe-aa86-834ed1f3690f" />
+        <div>
+          <label for="name" class="block text-sm font-medium">Full Name</label>
+          <input id="name" name="name" required class="mt-1 w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 focus:outline-none focus:ring-2" />
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium">Email</label>
+          <input id="email" name="email" type="email" required class="mt-1 w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 focus:outline-none focus:ring-2" />
+        </div>
+        <div>
+          <label for="phone" class="block text-sm font-medium">Phone</label>
+          <input id="phone" name="phone" type="tel" class="mt-1 w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 focus:outline-none focus:ring-2" />
+        </div>
+        <div>
+          <label for="message" class="block text-sm font-medium">Project Requirements</label>
+          <textarea id="message" name="message" rows="6" required class="mt-1 w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 focus:outline-none focus:ring-2" placeholder="Please provide your requirements in detail..."></textarea>
+        </div>
+        <input type="hidden" name="subject" value="New Project Inquiry - HYTek Pinnacle" />
+        <input type="hidden" name="from_name" value="HYTek Pinnacle Website" />
+        <div class="flex items-center gap-3">
+          <button type="submit" class="btn btn-primary transition-all hover-float">Send Message</button>
+          <a href="https://wa.me/919361807592" target="_blank" rel="noopener" class="btn btn-ghost text-white">WhatsApp</a>
+        </div>
+        <p class="text-xs text-slate-400">By submitting, you agree to be contacted about your inquiry.</p>
+
+        <p id="formMessage" class="text-green-400 mt-4 hidden"></p>
+      </form>
+    </div>
+
+    <div class="card p-6 reveal glow-border">
+      <h2 class="font-semibold text-white">Direct Contact</h2>
+      <ul class="mt-3 space-y-2 text-sm text-slate-300">
+        <li>Email: <a class="text-sky-400" href="mailto:hytekpinnacle@gmail.com">hytekpinnacle@gmail.com</a></li>
+        <li>Phone: <a class="text-sky-400" href="tel:+919361807592">+91 93618 07592</a></li>
+        <li>WhatsApp: <a class="text-sky-400" href="https://wa.me/919361807592" target="_blank" rel="noopener">Get Quotes Now</a></li>
+      </ul>
+      <div class="mt-6 p-4 rounded-xl border border-white/10 text-sm text-slate-300 bg-white/5">
+        <strong>Note:</strong> We’re here to help you transform your ideas into reality. Please provide as much detail as possible about your project so we can assist you effectively. Our team responds quickly to every inquiry.
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="mt-24">
+  <div class="max-w-7xl mx-auto px-4 py-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+    <div>
+      <div class="flex items-center gap-3">
+        <img src="logo.png" alt="HYTek Pinnacle logo" class="h-9 w-9 rounded-md"/>
+        <span class="font-extrabold text-white">HYTek Pinnacle</span>
+      </div>
+      <p class="mt-2 text-sm text-slate-300 italic">Pinnacle of Success!</p>
+      <p class="mt-3 text-sm text-slate-400">Advanced technology solutions that enhance efficiency, streamline operations, and drive innovation.</p>
+    </div>
+
+    <div>
+      <h3 class="font-semibold text-white">Explore</h3>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li><a class="hover:underline" href="index.html">Home</a></li>
+        <li><a class="hover:underline" href="about.html">About</a></li>
+        <li><a class="hover:underline" href="services.html">Services</a></li>
+        <li><a class="hover:underline" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="font-semibold text-white">Contact</h3>
+      <ul class="mt-3 space-y-2 text-sm text-slate-300">
+        <li>Email: <a class="text-sky-400" href="mailto:hytekpinnacle@gmail.com">hytekpinnacle@gmail.com</a></li>
+        <li>Phone: <a class="text-sky-400" href="tel:+919361807592">+91 93618 07592</a></li>
+        <li>WhatsApp: <a class="text-sky-400" href="https://wa.me/919361807592" target="_blank" rel="noopener">Get Quotes</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="font-semibold text-white">Commitment</h3>
+      <ul class="mt-3 space-y-2 text-sm text-slate-400">
+        <li>Fast • Accessible • SEO‑Ready</li>
+        <li>Reliable support 24/7</li>
+        <li>Data privacy and security guaranteed</li>
+        <li>Continuous improvement and innovation</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 py-4 text-xs text-slate-400 flex flex-col sm:flex-row gap-2 justify-between">
+      <span>© 2025 HYTek Pinnacle</span>
+      <span>Designed with care, powered by performance.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  
+  const form = e.target;
+  const formData = new FormData(form);
+  
+  const response = await fetch(form.action, {
+    method: form.method,
+    body: formData,
+  });
+  
+  const messageEl = document.getElementById('formMessage');
+
+  if (response.ok) {
+    messageEl.textContent = 'Your query has been submitted successfully!';
+    messageEl.classList.remove('hidden');
+    messageEl.classList.remove('text-red-400');
+    messageEl.classList.add('text-green-400');
+    form.reset();
+  } else {
+    messageEl.textContent = 'There was an error submitting your query. Please try again.';
+    messageEl.classList.remove('hidden');
+    messageEl.classList.remove('text-green-400');
+    messageEl.classList.add('text-red-400');
+  }
+});
+</script>
+
+</body>
+</html>
