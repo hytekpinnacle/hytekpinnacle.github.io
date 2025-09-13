@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gallery | HYTek Pinnacle</title>
+    <meta
+      name="description"
+      content="Selected highlights of our work and UI components (illustrative, no photos)."
+    />
+    <link rel="canonical" href="https://hytekpinnacle.github.io/gallery" />
+    <link rel="icon" href="logo.png" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Gallery | HYTek Pinnacle" />
+    <meta
+      property="og:description"
+      content="Selected highlights of our work and UI components (illustrative, no photos)."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://hytekpinnacle.github.io/gallery" />
+    <meta property="og:image" content="logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="theme-color" content="#c21d2e" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --ink: #111827;
+        --bg: #0b1020;
+        --muted: #6b7280;
+        --brand: #c21d2e;
+        --brand-2: #ef4444;
+        --accent: #1f4aa8;
+        --accent-2: #60a5fa;
+        --ring: var(--accent);
+      }
+
+      html,
+      body {
+        scroll-behavior: smooth;
+        background: #0b1020;
+        color: #e5e7eb;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial, sans-serif;
+      }
+
+      a {
+        color: var(--accent);
+      }
+
+      .card {
+        background: rgba(17, 24, 39, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 1.25rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        overflow: hidden;
+      }
+
+      .gallery-img {
+        transition: transform 0.6s ease, box-shadow 0.6s ease;
+      }
+
+      .gallery-img:hover {
+        transform: scale(1.08) rotate(1deg);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5),
+          0 0 20px rgba(96, 165, 250, 0.6);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+
+      .reveal.is-inview {
+        opacity: 1;
+        transform: none;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 700;
+        border-radius: 1rem;
+        padding: 0.85rem 1.2rem;
+      }
+
+      .btn-whatsapp {
+        background: linear-gradient(90deg, #25d366, #128c7e);
+        color: white;
+        box-shadow: 0 10px 20px rgba(18, 140, 126, 0.35);
+        transition: transform 0.3s ease, filter 0.3s ease;
+      }
+
+      .btn-whatsapp:hover {
+        transform: translateY(-3px) scale(1.05);
+        filter: brightness(1.1);
+      }
+
+      :focus-visible {
+        outline: 3px solid var(--ring);
+        outline-offset: 3px;
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const o = new IntersectionObserver(
+          (es) => {
+            es.forEach(
+              (e) => e.isIntersecting && e.target.classList.add("is-inview")
+            );
+          },
+          {
+            threshold: 0.14,
+          }
+        );
+        document.querySelectorAll(".reveal").forEach((el) => o.observe(el));
+      });
+    </script>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <header class="navbar sticky top-0 z-40">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex items-center justify-between h-16">
+          <a href="index.html" class="flex items-center gap-3">
+            <picture>
+              <source srcset="logo.webp" type="image/webp" />
+              <img
+                src="logo.png"
+                alt="HYTek Pinnacle logo"
+                class="h-9 w-9 rounded-md object-contain"
+              />
+            </picture>
+            <span class="font-extrabold tracking-tight text-white"
+              >HYTek Pinnacle</span
+            >
+          </a>
+          <nav class="hidden md:flex items-center gap-6 text-sm">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="services.html" class="nav-link">Services</a>
+            <a href="gallery.html" class="nav-link">Gallery</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+          </nav>
+          <button
+            id="menuBtn"
+            class="md:hidden p-2 rounded-lg border border-white/10 text-slate-200"
+            aria-label="Toggle Menu"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div id="mobileMenu" class="md:hidden hidden border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-3 text-sm">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="services.html" class="nav-link">Services</a>
+          <a href="gallery.html" class="nav-link">Gallery</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+      </div>
+      <script>
+        const btn = document.getElementById("menuBtn");
+        const menu = document.getElementById("mobileMenu");
+        if (btn)
+          btn.addEventListener("click", () => menu.classList.toggle("hidden"));
+      </script>
+    </header>
+
+    <!-- Main -->
+    <main class="max-w-7xl mx-auto px-4 py-16">
+      <header class="max-w-3xl reveal text-center">
+        <!-- WhatsApp CTA -->
+        <div class="mt-6">
+          <a
+            href="https://wa.me/919361807592"
+            target="_blank"
+            rel="noopener"
+            class="btn btn-whatsapp"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                d="M16.69 13.13c-.27-.13-1.63-.8-1.88-.9-.25-.09-.43-.13-.61.14s-.7.9-.86 1.09c-.16.18-.32.2-.59.07-.27-.13-1.13-.42-2.16-1.35-.8-.71-1.34-1.58-1.5-1.84-.16-.27-.02-.41.12-.54.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.13-.61-1.47-.84-2.01-.22-.52-.44-.45-.61-.46h-.52c-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.28s.99 2.64 1.13 2.82c.14.18 1.94 3.02 4.7 4.23.66.29 1.17.46 1.57.59.66.21 1.26.18 1.74.11.53-.08 1.63-.67 1.86-1.32.23-.66.23-1.21.16-1.32-.07-.11-.25-.18-.52-.31z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M12 22c5.52 0 10-4.48 10-10S17.52 2 12 2 2 6.48 2 12c0 1.77.46 3.42 1.27 4.85L2 22l5.3-1.39A9.96 9.96 0 0012 22zM4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8c-1.44 0-2.8-.38-3.98-1.05l-.29-.16-3.13.82.84-3.05-.2-.31A7.96 7.96 0 014 12z"
+              />
+            </svg>
+            Chat on WhatsApp
+          </a>
+        </div>
+      </header>
+
+      <!-- Gallery Grid -->
+      <section class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div class="card p-4 reveal flex justify-center">
+          <img src="gl.png" alt="Project GL" class="gallery-img rounded-xl" />
+        </div>
+        <div class="card p-4 reveal flex justify-center">
+          <img src="ks.png" alt="Project KS" class="gallery-img rounded-xl" />
+        </div>
+        <div class="card p-4 reveal flex justify-center">
+          <img src="ws.png" alt="Project WS" class="gallery-img rounded-xl" />
+        </div>
+        <div class="card p-4 reveal flex justify-center">
+          <img src="re.png" alt="Project RE" class="gallery-img rounded-xl" />
+        </div>
+        <div class="card p-4 reveal flex justify-center">
+          <img src="z.png" alt="Project Z" class="gallery-img rounded-xl" />
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-24">
+      <div
+        class="max-w-7xl mx-auto px-4 py-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4"
+      >
+        <div>
+          <div class="flex items-center gap-3">
+            <img
+              src="logo.png"
+              alt="HYTek Pinnacle logo"
+              class="h-9 w-9 rounded-md"
+            />
+            <span class="font-extrabold text-white">HYTek Pinnacle</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-300 italic">Pinnacle of Success!</p>
+          <p class="mt-3 text-sm text-slate-400">
+            Advanced technology solutions that enhance efficiency, streamline
+            operations, and drive innovation.
+          </p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-white">Explore</h3>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li><a class="hover:underline" href="index.html">Home</a></li>
+            <li><a class="hover:underline" href="about.html">About</a></li>
+            <li>
+              <a class="hover:underline" href="services.html">Services</a>
+            </li>
+            <li><a class="hover:underline" href="gallery.html">Gallery</a></li>
+            <li><a class="hover:underline" href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold text-white">Contact</h3>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li>
+              Email:
+              <a class="text-sky-400" href="mailto:hytekpinnacle@gmail.com"
+                >hytekpinnacle@gmail.com</a
+              >
+            </li>
+            <li>
+              Phone:
+              <a class="text-sky-400" href="tel:+919361807592"
+                >+91 93618 07592</a
+              >
+            </li>
+            <li>
+              WhatsApp:
+              <a
+                class="text-sky-400"
+                href="https://wa.me/919361807592"
+                target="_blank"
+                rel="noopener"
+                >Get Quotes</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold text-white">Commitment</h3>
+          <ul class="mt-3 space-y-2 text-sm text-slate-400">
+            <li>Fast • Accessible • SEO-Ready</li>
+            <li>Reliable support 24/7</li>
+            <li>Data privacy and security guaranteed</li>
+            <li>Continuous improvement and innovation</li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-white/10">
+        <div
+          class="max-w-7xl mx-auto px-4 py-4 text-xs text-slate-400 flex flex-col sm:flex-row gap-2 justify-between"
+        >
+          <span>© 2025 HYTek Pinnacle</span>
+          <span>Designed with care, powered by performance.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
